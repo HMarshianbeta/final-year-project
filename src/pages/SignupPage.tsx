@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Shield, Mail, Lock, UserCircle, Building2, Github, Twitter } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from '@/components/ui/use-toast';
 import { 
   Select,
@@ -23,6 +22,7 @@ const SignupPage: React.FC = () => {
   const [userRole, setUserRole] = useState('');
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,6 +65,11 @@ const SignupPage: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSignup = () => {
+    // Simulate signup logic
+    navigate('/dashboard');
   };
 
   return (
@@ -256,6 +261,12 @@ const SignupPage: React.FC = () => {
                 Twitter
               </Button>
             </div>
+          </div>
+
+          <div className="mt-6">
+            <Button onClick={handleSignup} className="w-full">
+              Sign Up
+            </Button>
           </div>
         </div>
       </div>

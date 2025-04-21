@@ -1,11 +1,12 @@
-
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Shield, Box, CheckCircle, AlertTriangle, BarChart3, Clock, Plus } from 'lucide-react';
 
 const DashboardPage: React.FC = () => {
+  const navigate = useNavigate();
+
   // Mock data for dashboard
   const stats = [
     { title: "Total Products", value: "128", icon: Box, change: "+12% from last month" },
@@ -166,6 +167,22 @@ const DashboardPage: React.FC = () => {
               <Button variant="outline" className="h-auto py-6 flex flex-col items-center gap-2">
                 <BarChart3 className="h-6 w-6" />
                 <span>Generate Report</span>
+              </Button>
+            </div>
+          </div>
+
+          {/* Navigation buttons */}
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold mb-4">Navigation</h2>
+            <div className="flex gap-4">
+              <Button variant="outline" onClick={() => navigate('/products')}>
+                Go to Products
+              </Button>
+              <Button variant="outline" onClick={() => navigate('/reports')}>
+                Go to Reports
+              </Button>
+              <Button variant="outline" onClick={() => navigate('/settings')}>
+                Go to Settings
               </Button>
             </div>
           </div>
