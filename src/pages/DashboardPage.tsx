@@ -60,7 +60,7 @@ const DashboardPage: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/verifications" className="flex items-center p-3 text-neutral-primaryText hover:bg-neutral-background rounded-lg">
+                <Link to="/verification" className="flex items-center p-3 text-neutral-primaryText hover:bg-neutral-background rounded-lg">
                   <CheckCircle className="h-5 w-5 mr-3" />
                   <span>Verifications</span>
                 </Link>
@@ -111,7 +111,7 @@ const DashboardPage: React.FC = () => {
             <div className="p-6 border-b border-neutral-border">
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-semibold">Recent Verifications</h2>
-                <Link to="/verifications" className="text-blue-primary text-sm font-medium hover:underline">
+                <Link to="/verification" className="text-blue-primary text-sm font-medium hover:underline">
                   View all
                 </Link>
               </div>
@@ -180,6 +180,12 @@ const DashboardPage: React.FC = () => {
               </Button>
               <Button variant="outline" onClick={() => navigate('/reports')}>
                 Go to Reports
+              </Button>
+              <Button variant="outline" onClick={() => navigate('/settings')}>
+                Go to Settings
+              </Button>
+              <Button variant="outline" onClick={() => navigate('/verification')}>
+                Go to Verifications
               </Button>
               <Button variant="outline" onClick={() => navigate('/settings')}>
                 Go to Settings

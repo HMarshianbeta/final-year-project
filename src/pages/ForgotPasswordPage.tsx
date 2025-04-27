@@ -1,15 +1,15 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Shield, Mail, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from '@/components/ui/use-toast';
 
 const ForgotPasswordPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,6 +24,7 @@ const ForgotPasswordPage: React.FC = () => {
         title: "Reset link sent",
         description: "If an account exists with this email, you will receive a password reset link.",
       });
+      navigate('/login'); // Redirect to LoginPage
     } catch (error) {
       toast({
         variant: "destructive",

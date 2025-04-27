@@ -27,8 +27,8 @@ const App = () => (
         <Sonner />
         <Router>
           <Routes>
-            {/* Default route redirects to LoginPage */}
-            <Route path="/" element={<Navigate to="/login" replace />} />
+            {/* Default route redirects to LandingPage */}
+            <Route path="/" element={<LandingPage />} />
 
             {/* Authentication routes */}
             <Route path="/login" element={<LoginPage />} />

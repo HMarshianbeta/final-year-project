@@ -54,6 +54,7 @@ const SignupPage: React.FC = () => {
         title: "Account created successfully",
         description: "Welcome to VerifyPro! You can now sign in.",
       });
+      navigate('/dashboard'); // Redirect to DashboardPage
       
       // In a real app, you would redirect to login or dashboard
     } catch (error) {

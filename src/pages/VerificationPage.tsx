@@ -78,7 +78,7 @@ const VerificationPage: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/verifications" className="flex items-center p-3 text-blue-primary bg-blue-50 rounded-lg">
+                <Link to="/verification" className="flex items-center p-3 text-blue-primary bg-blue-50 rounded-lg">
                   <CheckCircle className="h-5 w-5 mr-3" />
                   <span>Verifications</span>
                 </Link>

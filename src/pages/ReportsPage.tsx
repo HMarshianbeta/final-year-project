@@ -55,7 +55,7 @@ const ReportsPage: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/verifications" className="flex items-center p-3 text-neutral-primaryText hover:bg-neutral-background rounded-lg">
+                <Link to="/verification" className="flex items-center p-3 text-neutral-primaryText hover:bg-neutral-background rounded-lg">
                   <BarChart3 className="h-5 w-5 mr-3" />
                   <span>Verifications</span>
                 </Link>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Shield, Search, ChevronRight, Star, ArrowRight } from "lucide-react";

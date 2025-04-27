@@ -27,8 +27,7 @@ const LoginPage: React.FC = () => {
           title: "Login successful",
           description: "Welcome back to VerifyPro",
         });
-        navigate('/dashboard');
-        // You would redirect to dashboard here
+        navigate('/dashboard'); // Redirect to DashboardPage
       } else {
         toast({
           variant: "destructive",
