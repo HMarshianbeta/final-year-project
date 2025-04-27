@@ -119,10 +119,10 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
               </li>
               <li>
                 <Link 
-                  to="/verifications" 
+                  to="/verification" 
                   className={cn(
                     "flex items-center p-3 rounded-lg transition-all duration-200",
-                    isActivePath('/verifications') 
+                    isActivePath('/verification') 
                       ? "text-blue-primary bg-blue-primary/10 shadow-sm" 
                       : "text-neutral-primaryText hover:bg-white/50"
                   )}
