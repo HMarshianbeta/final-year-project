@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -11,53 +10,37 @@ const ProductsPage: React.FC = () => {
   
   // Mock data for products
   const products = [
-    { 
-      id: 1, 
-      name: "Premium Headphones X1", 
-      sku: "PHX1-001", 
+    {
+      id: 1,
+      name: "Damaged Phone Display",
+      sku: "DPD-001",
       category: "Electronics",
       status: "verified",
-      image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+      image: "/assets/pngtree-damaged-phone-display-with-cracks-and-breaks-png-image_14807000.png",
     },
-    { 
-      id: 2, 
-      name: "Smart Watch Pro", 
-      sku: "SWP-002", 
-      category: "Wearables",
-      status: "verified",
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-    },
-    { 
-      id: 3, 
-      name: "Designer Handbag", 
-      sku: "DHB-003", 
-      category: "Fashion",
-      status: "unverified",
-      image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-    },
-    { 
-      id: 4, 
-      name: "Bluetooth Speaker", 
-      sku: "BTS-004", 
+    {
+      id: 2,
+      name: "Glossy Surface TV",
+      sku: "GSTV-002",
       category: "Electronics",
       status: "verified",
-      image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+      image: "/assets/pngtree-black-screen-realistic-glossy-surface-dark-thin-led-tv-blank-television-png-image_6504092.png",
     },
-    { 
-      id: 5, 
-      name: "Luxury Sunglasses", 
-      sku: "LSG-005", 
-      category: "Accessories",
-      status: "flagged",
-      image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
-    },
-    { 
-      id: 6, 
-      name: "Premium Sneakers", 
-      sku: "PSN-006", 
-      category: "Footwear",
+    {
+      id: 3,
+      name: "Stock Photo",
+      sku: "SP-003",
+      category: "Photography",
       status: "verified",
-      image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+      image: "/assets/istockphoto-1299065445-612x612.jpg",
+    },
+    {
+      id: 4,
+      name: "Preview Image",
+      sku: "PI-004",
+      category: "Graphics",
+      status: "verified",
+      image: "/assets/PHOTO-2025-04-15-16-33-29-removebg-preview.png",
     },
   ];
   
