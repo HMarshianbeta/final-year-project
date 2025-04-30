@@ -1,66 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from '@/components/ui/badge';
-import { Link, useParams } from 'react-router-dom';
-import { Shield } from 'lucide-react';
-import axios from 'axios';
 
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<any | null>(null);
-  const [verificationResult, setVerificationResult] = useState<string | null>(null);
-  const [isVerifying, setIsVerifying] = useState(false);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(`/api/products/${id}`);
-        setProduct(response.data);
-      } catch (error) {
-        console.error('Failed to fetch product:', error);
-      }
-    };
+  // Dummy data from ProductsPage
+  const products = [
+    {
+      id: 1,
+      name: "Damaged Phone Display",
+      sku: "DPD-001",
+      category: "Electronics",
+      status: "verified",
+      description: "A phone display with visible cracks and damage.",
+      image: "/assets/pngtree-damaged-phone-display-with-cracks-and-breaks-png-image_14807000.png",
+    },
+    {
+      id: 2,
+      name: "Glossy Surface TV",
+      sku: "GSTV-002",
+      category: "Electronics",
+      status: "verified",
+      description: "A sleek and glossy surface television.",
+      image: "/assets/pngtree-black-screen-realistic-glossy-surface-dark-thin-led-tv-blank-television-png-image_6504092.png",
+    },
+    {
+      id: 3,
+      name: "Stock Photo",
+      sku: "SP-003",
+      category: "Photography",
+      status: "verified",
+      description: "A high-quality stock photo.",
+      image: "/assets/istockphoto-1299065445-612x612.jpg",
+    },
+    {
+      id: 4,
+      name: "Preview Image",
+      sku: "PI-004",
+      category: "Graphics",
+      status: "verified",
+      description: "A preview image for design purposes.",
+      image: "/assets/PHOTO-2025-04-15-16-33-29-removebg-preview.png",
+    },
+  ];
 
-    fetchProduct();
-  }, [id]);
-
-  const handleVerification = async () => {
-if (!product) return;
-
-    setIsVerifying(true);
-    try {
-      const formData = new FormData();
-      formData.append('image', product.image);
-
-      const response = await axios.post('/api/verify', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      setVerificationResult(response.data.result);
-    } catch (error) {
-      console.error('Verification failed:', error);
-      setVerificationResult('Error verifying the product.');
-    } finally {
-      setIsVerifying(false);
-    }
-  };
+  // Find the product by ID
+  const product = products.find((p) => p.id === Number(id));
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div>Product not found</div>;
   }
 
   return (
     <div className="min-h-screen bg-neutral-background">
       <header className="bg-white border-b border-neutral-border sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center">
-            <Shield className="text-blue-primary h-8 w-8" />
-            <span className="ml-2 text-xl font-bold">VerifyPro</span>
-          </div>
+          <h1 className="text-xl font-bold">Product Details</h1>
         </div>
       </header>
 
@@ -77,17 +74,8 @@ if (!product) return;
           </div>
 
           <div className="mt-6">
-            <Button onClick={handleVerification} disabled={isVerifying}>
-              {isVerifying ? 'Verifying...' : 'Start Verification'}
-            </Button>
+            <Button>Take Action</Button>
           </div>
-
-          {verificationResult && (
-            <div className="mt-4 p-4 bg-blue-50 rounded">
-              <p className="text-neutral-primaryText font-medium">Verification Result:</p>
-              <p className="text-neutral-secondaryText">{verificationResult}</p>
-            </div>
-          )}
         </Card>
       </main>
     </div>
