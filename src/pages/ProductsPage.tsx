@@ -10,34 +10,34 @@ const ProductsPage: React.FC = () => {
   
   // Mock data for products
   const products = [
-    {
-      id: 1,
-      name: "Damaged Phone Display",
-      sku: "DPD-001",
+    { 
+      id: 1, 
+      name: "Damaged Phone Display", 
+      sku: "DPD-001", 
       category: "Electronics",
       status: "verified",
       image: "/assets/pngtree-damaged-phone-display-with-cracks-and-breaks-png-image_14807000.png",
     },
-    {
-      id: 2,
-      name: "Glossy Surface TV",
-      sku: "GSTV-002",
+    { 
+      id: 2, 
+      name: "Glossy Surface TV", 
+      sku: "GSTV-002", 
       category: "Electronics",
       status: "verified",
       image: "/assets/pngtree-black-screen-realistic-glossy-surface-dark-thin-led-tv-blank-television-png-image_6504092.png",
     },
-    {
-      id: 3,
-      name: "Stock Photo",
-      sku: "SP-003",
+    { 
+      id: 3, 
+      name: "Stock Photo", 
+      sku: "SP-003", 
       category: "Photography",
       status: "verified",
       image: "/assets/istockphoto-1299065445-612x612.jpg",
     },
-    {
-      id: 4,
-      name: "Preview Image",
-      sku: "PI-004",
+    { 
+      id: 4, 
+      name: "Preview Image", 
+      sku: "PI-004", 
       category: "Graphics",
       status: "verified",
       image: "/assets/PHOTO-2025-04-15-16-33-29-removebg-preview.png",
