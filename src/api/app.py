@@ -1,10 +1,21 @@
 from fastapi import FastAPI, UploadFile, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from ultralytics import YOLO
 from PIL import Image
 import io
 import numpy as np
 
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8080"],  # Frontend origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 model = YOLO('src/models/best.pt')
 
 @app.post("/predict")

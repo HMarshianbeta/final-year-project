@@ -1,13 +1,13 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { productCategories, predictReturnRate } from "@/services/mockDataService";
+import axios from "axios";
 
 interface ReturnPredictionProps {
-  onPredictionGenerated?: (prediction: number) => void;
+  onPredictionGenerated?: (prediction: string | number) => void;
 }
 
 const ReturnPrediction = ({ onPredictionGenerated }: ReturnPredictionProps) => {
@@ -15,6 +15,8 @@ const ReturnPrediction = ({ onPredictionGenerated }: ReturnPredictionProps) => {
   const [price, setPrice] = useState("");
   const [prediction, setPrediction] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [result, setResult] = useState<string | null>(null);
 
   const handlePredict = () => {
     if (!category || !price) return;
@@ -30,6 +32,58 @@ const ReturnPrediction = ({ onPredictionGenerated }: ReturnPredictionProps) => {
       }
       setLoading(false);
     }, 800);
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setFile(event.target.files[0]);
+    }
+  };
+
+  const handleVerify = async () => {
+    if (!file) return;
+
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    console.log("Starting verification process..."); // Log before Axios request
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/predict", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("Full backend response:", response); // Log the full response
+
+      if (!response.data || !response.data.predictions) {
+        throw new Error("Invalid response format: Missing 'predictions' key");
+      }
+
+      const predictions = response.data.predictions;
+      if (!Array.isArray(predictions)) {
+        throw new Error("Invalid response format: 'predictions' is not an array");
+      }
+
+      console.log("Predictions array:", predictions); // Log the predictions array
+
+      const isScratched = predictions.some((pred: any) => pred.name === "Scratched");
+      const resultText = isScratched ? "Scratched" : "Not Scratched";
+
+      setResult(resultText);
+      console.log("Updated result state:", resultText); // Log the updated result state
+
+      if (onPredictionGenerated) {
+        onPredictionGenerated(resultText);
+      }
+    } catch (error) {
+      console.error("Error during verification:", error);
+      setResult("Error verifying the product.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -103,6 +157,21 @@ const ReturnPrediction = ({ onPredictionGenerated }: ReturnPredictionProps) => {
               </p>
             </div>
           )}
+
+          <div className="space-y-4">
+            <Label htmlFor="file">Upload Product Image</Label>
+            <Input type="file" id="file" onChange={handleFileChange} />
+
+            <Button onClick={() => { console.log("Button clicked"); handleVerify(); }} disabled={loading || !file}>
+              {loading ? "Verifying..." : "Start Verification"}
+            </Button>
+
+            {result && (
+              <div className="mt-4 text-lg font-semibold">
+                Result: {result}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
